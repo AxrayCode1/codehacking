@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use Illuminate\Http\Request;
+use Session;
 
 use App\Http\Requests;
 
@@ -99,7 +100,7 @@ class AdminUsersController extends Controller
         //        
         $user = User::findOrFail($id);
         if(trim($request->password) == ''){
-            $input = $request->except('photo_id');
+            $input = $request->except('password');
         }else{
             $input = $request->all();
         }
@@ -115,7 +116,7 @@ class AdminUsersController extends Controller
         
         return redirect('/admin/users');        
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -125,5 +126,14 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        unlink(public_path().$user->photo->file);
+        
+        $user->delete();
+
+        Session::flash('deleted_user', 'The user has been deleted');
+
+        return redirect('/admin/users');   
     }
 }

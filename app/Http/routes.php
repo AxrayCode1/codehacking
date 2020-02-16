@@ -23,4 +23,14 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::resource('admin/users', 'AdminUsersController');
+Route::get('/login/redirect', 'LogInController@redirect');
+
+// Route::get('/login/redirect', function () {
+//     return Auth::user()->role->name;
+// });
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::resource('admin/users', 'AdminUsersController');
+    Route::resource('admin/posts', 'AdminPostsController');
+});
+
