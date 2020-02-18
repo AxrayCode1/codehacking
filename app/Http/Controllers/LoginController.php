@@ -11,10 +11,10 @@ use App\Http\Requests;
 class LoginController extends Controller
 {
     //
-    public function redirect(){                 
+    public function redirect(){                       
         if(Auth::user()->role->name == 'administrator'){
             return redirect('/admin/users');
-        }else{        
+        }else{                    
             return redirect('/');
         }
     } 

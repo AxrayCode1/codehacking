@@ -28,9 +28,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    public function setPasswordAttribute($value){
-        $this->attributes['password'] = bcrypt($value);
-    }
+    // public function setPasswordAttribute($value){
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
 
     public function photo(){        
         return $this->belongsTo('App\Photo');
@@ -46,4 +46,5 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post');
     }
+
 }

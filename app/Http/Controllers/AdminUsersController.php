@@ -57,6 +57,7 @@ class AdminUsersController extends Controller
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
         }        
+        $input['password'] = bcrypt($input['password']);
         // return $input;
         User::create($input);
         return redirect('/admin/users');        
@@ -103,6 +104,7 @@ class AdminUsersController extends Controller
             $input = $request->except('password');
         }else{
             $input = $request->all();
+            $input['password'] = bcrypt($input['password']);
         }
         if($file = $request->file('photo_id')){
             $input = $request->all();  
