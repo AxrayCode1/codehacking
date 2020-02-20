@@ -20,7 +20,15 @@
                         {{-- <td>{{$photo->file}}</td>                     --}}
                         <td><img height="50" src="{{$photo->file}}" alt=""></td>
                         <td>{{$photo->created_at ? $photo->created_at->diffForhumans() : 'no date'}}</td>
-                        <td>{{$photo->updated_at ? $photo->created_at->diffForhumans() : 'no date'}}</td>                                                                    
+                        <td>{{$photo->updated_at ? $photo->created_at->diffForhumans() : 'no date'}}</td>    
+                        <td>
+                          {!! Form::open(['method'=>'DELETE', 'action'=>['AdminMediasController@destroy',$photo->id]]) !!}            
+                            {{ csrf_field() }}        
+                            <div class="form-group">
+                              {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                            </div>
+                          {!! Form::close() !!}
+                        </td>                                                                
                     </tr>
                   @endforeach          
                 
