@@ -12,7 +12,8 @@ class CommentReply extends Model
         'author',
         'email',
         'body',
-        'is_active'
+        'is_active',
+        'photo'
     ];
 
     public function comments(){

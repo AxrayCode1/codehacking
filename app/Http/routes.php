@@ -19,9 +19,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('post/{id}',['as'=>'home.post','uses'=>'AdminPostsController@post']);
 
 Route::get('/login/redirect', 'LogInController@redirect');
 
@@ -30,6 +28,10 @@ Route::get('/login/redirect', 'LogInController@redirect');
 // });
 
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+
     Route::resource('admin/users', 'AdminUsersController');
     
     Route::resource('admin/posts', 'AdminPostsController');
