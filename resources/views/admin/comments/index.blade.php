@@ -29,6 +29,7 @@
                             <td>{{$comment->created_at->diffForhumans()}}</td>
                             {{-- <td>{{$comment->updated_at->diffForhumans()}}</td> --}}
                             <td><a href="{{route('home.post',$comment->post_id)}}">View Post</a></td>
+                            <td><a href="{{route('admin.comments.replies.show',$comment->id)}}">View Replies</a></td>
                             <td>
                                 @if ($comment->is_active == 1)
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update',$comment->id],'files'=>true]) !!}                    

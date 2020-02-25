@@ -12,6 +12,8 @@ use App\Post;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Comment;
+
 class PostCommentsController extends Controller
 {
     /**
@@ -45,20 +47,20 @@ class PostCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //        
         $user = Auth::user();
         
         $data =[
-            'comment_id' => $request->comment_id,
+            'post_id' => $request->post_id,
             'author' => $user->name,
             'photo' => $user->photo->file,
             'email' => $user->email,            
             'body' => $request->body
         ];
 
-        CommentReply::create($data);
+        Comment::create($data);
         
-        $request->session()->flash('reply_message','Your reply has been submitted and is waiting moderation');
+        $request->session()->flash('comment_message','Your comment has been submitted and is waiting moderation');
 
         return redirect()->back();
     }
@@ -101,7 +103,7 @@ class PostCommentsController extends Controller
     {
         //
 
-        Comment::findOrFail($id)->update($request->all($request->all()));
+        Comment::findOrFail($id)->update($request->all());
         return redirect('/admin/comments');
     }
 

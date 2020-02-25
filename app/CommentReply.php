@@ -16,7 +16,7 @@ class CommentReply extends Model
         'photo'
     ];
 
-    public function comments(){
+    public function comment(){
         return $this->belongsTo('App\Comment');
     }
 }
