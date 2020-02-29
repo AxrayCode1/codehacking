@@ -41,3 +41,7 @@
     </div>
     @include('includes.form_error')
 @stop
+
+@section('scripts')
+    @include('includes.tinyeditor')
+@endsection

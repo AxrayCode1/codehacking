@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('post/{id}',['as'=>'home.post','uses'=>'AdminPostsController@post']);
 
-Route::get('/login/redirect', 'LogInController@redirect');
+// Route::get('/login/redirect', 'LogInController@redirect');
 
 // Route::get('/login/redirect', function () {
 //     return Auth::user()->role->name;

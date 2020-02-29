@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    
     <h1>Create Posts</h1>
     {!! Form::open(['method'=>'POST', 'action'=>'AdminPostsController@store','files'=>true]) !!}    
     <div class="form-group">
@@ -29,3 +30,7 @@
     {!! Form::close() !!}
     @include('includes.form_error')
 @stop
+
+@section('scripts')
+    @include('includes.tinyeditor')
+@endsection
